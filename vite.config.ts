@@ -1,3 +1,4 @@
+import path from "node:path";
 import { reactRouter } from "@react-router/dev/vite";
 import autoprefixer from "autoprefixer";
 import tailwindcss from "tailwindcss";
@@ -8,6 +9,11 @@ export default defineConfig({
   css: {
     postcss: {
       plugins: [tailwindcss, autoprefixer],
+    },
+  },
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./app"),
     },
   },
   plugins: [reactRouter(), tsconfigPaths()],
