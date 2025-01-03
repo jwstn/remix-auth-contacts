@@ -14,5 +14,5 @@ export function loader({ request, context, params }: Route.LoaderArgs) {
 
 export default function Index({ loaderData, matches, params, actionData }: Route.ComponentProps) {
   // console.log(loaderData, matches, params, actionData);
-  return <div className="text-red-500">home</div>;
+  return <div>index</div>;
 }
