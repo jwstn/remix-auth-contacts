@@ -6,6 +6,7 @@ export default [
     route("contacts/new", "routes/authenticated/contacts/new.tsx"),
     route("contacts/:contactId", "routes/authenticated/contacts/contact.tsx"),
     route("logout", "routes/authenticated/logout.tsx"),
+    route("about", "routes/about.tsx"),
   ]),
 
   route("login", "routes/login.tsx"),
