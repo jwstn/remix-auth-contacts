@@ -42,7 +42,7 @@ export async function action({ request }: Route.ActionArgs) {
       name: submission.value.name,
     },
   });
-  toast.success("Account successfully created 🚀");
+  toast("Account successfully created 🚀");
   return redirect("/");
 }
 

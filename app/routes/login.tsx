@@ -144,18 +144,18 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
     });
 
     if (error) {
-      return toast.error("Error occured!", {
+      return toast("Error occured!", {
         description: `${error.message}`,
       });
     }
 
-    toast.success("Login successfull 🚀", {
+    toast("Login successfull 🚀", {
       description: `You are now logged in as ${data?.user.name}`,
     });
 
     return redirect("/");
   } catch (error) {
-    toast.error("Error", {
+    toast("Error", {
       description: `${error}`,
     });
     return error;

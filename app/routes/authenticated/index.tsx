@@ -7,8 +7,9 @@ export function meta() {
   ];
 }
 
-export function loader({ request, context, params }: Route.LoaderArgs) {
-  // console.log(request, context, params);
+export async function action({ request }: Route.ActionArgs) {
+  console.log(request, "[request]");
+
   return {};
 }
 

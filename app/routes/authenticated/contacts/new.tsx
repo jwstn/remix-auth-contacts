@@ -34,7 +34,7 @@ export async function action({ request }: Route.ActionArgs) {
   }
 
   const contact = await db.insert(contactsTable).values(submission.value).returning();
-  toast.success("Contact created Successfully!");
+  toast("Contact created Successfully!");
 
   return redirect(`/contacts/${contact[0].id}`);
 }

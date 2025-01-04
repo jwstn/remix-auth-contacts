@@ -9,19 +9,17 @@ import type { Route } from "./+types/layout";
 export async function loader({ request }: Route.LoaderArgs) {
   const session = await auth.api.getSession({ headers: request.headers });
 
-  console.log(session, "[session]");
-
   if (!session?.user.id) {
     return redirect("/login");
   }
 
-  return await db.select().from(contactsTable);
+  return { contacts: await db.select().from(contactsTable), user: session.user };
 }
 
 export default function AuthLayout({ loaderData }: Route.ComponentProps) {
   return (
     <SidebarProvider>
-      <AppSidebar contacts={loaderData} />
+      <AppSidebar contacts={loaderData.contacts} user={loaderData.user} />
       <main className="p-4 w-full">
         <Outlet />
       </main>
