@@ -17,8 +17,6 @@ export async function loader({ request }: Route.LoaderArgs) {
     return redirect("/login");
   }
 
-  console.log(query, "[query]");
-
   if (query) {
     return {
       contacts: await db
