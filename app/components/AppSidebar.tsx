@@ -30,15 +30,21 @@ import {
 
 import { ChevronsUpDown, LogOut, PlusCircleIcon } from "lucide-react";
 
-export function AppSidebar({ contacts, user }) {
+type AppSidebarProps = {
+  contacts: any[];
+  user: any;
+  query: string | null | undefined;
+};
+
+export function AppSidebar({ contacts, user, query }: AppSidebarProps) {
   return (
     <Sidebar>
       <SidebarContent>
-        <form className="flex flex-nowrap gap-2 px-2 mt-5">
+        <Form id="search-form" className="flex flex-nowrap gap-2 px-2 mt-5">
           <Input
             name="q"
             type="search"
-            defaultValue={""}
+            defaultValue={query || ""}
             placeholder="Search users"
             className="w-full"
             aria-label="Search users"
@@ -46,7 +52,7 @@ export function AppSidebar({ contacts, user }) {
           <Link to="/contacts/new" className={cn(buttonVariants({ size: "icon" }), "min-w-10")}>
             <PlusCircleIcon />
           </Link>
-        </form>
+        </Form>
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarGroupLabel className="text-base flex justify-between">
