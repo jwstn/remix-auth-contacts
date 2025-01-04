@@ -2,10 +2,19 @@ import { AppSidebar } from "@/components/AppSidebar";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { db } from "@/db";
 import { contactsTable } from "@/db/schema";
-import { Outlet } from "react-router";
+import { auth } from "@/lib/auth.server";
+import { Outlet, redirect } from "react-router";
 import type { Route } from "./+types/layout";
 
-export async function loader({ params }: Route.LoaderArgs) {
+export async function loader({ request }: Route.LoaderArgs) {
+  const session = await auth.api.getSession({ headers: request.headers });
+
+  console.log(session, "[session]");
+
+  if (!session?.user.id) {
+    return redirect("/login");
+  }
+
   return await db.select().from(contactsTable);
 }
 

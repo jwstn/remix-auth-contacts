@@ -8,5 +8,6 @@ export default [
   ]),
 
   route("login", "routes/login.tsx"),
-  route("signup", "routes/signup.tsx"),
+  route("sign-up", "routes/signup.tsx"),
+  route("api/auth/*", "routes/api.auth.$.ts"),
 ] satisfies RouteConfig;
