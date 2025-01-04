@@ -1,4 +1,5 @@
 import {
+  Link,
   Links,
   Meta,
   Outlet,
@@ -7,7 +8,9 @@ import {
   isRouteErrorResponse,
 } from "react-router";
 
-import { Toaster } from "@/components/ui/toaster";
+import { buttonVariants } from "@/components/ui/button";
+import { Toaster } from "@/components/ui/sonner";
+import { cn } from "@/lib/utils";
 import type { Route } from "./+types/root";
 import stylesheet from "./app.css?url";
 
@@ -63,14 +66,19 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   }
 
   return (
-    <main className="pt-16 p-4 container mx-auto">
-      <h1>{message}</h1>
-      <p>{details}</p>
-      {stack && (
-        <pre className="w-full p-4 overflow-x-auto">
-          <code>{stack}</code>
-        </pre>
-      )}
+    <main className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="text-center">
+        <h1 className="text-6xl font-bold text-gray-800 mb-4">{message}</h1>
+        <p className="text-gray-500 mb-8">{details}</p>
+        {stack && (
+          <pre className="w-full p-4 overflow-x-auto">
+            <code>{stack}</code>
+          </pre>
+        )}
+        <Link to="/" className={cn(buttonVariants({ variant: "link", size: "lg" }), "text-lg")}>
+          Go back home
+        </Link>
+      </div>
     </main>
   );
 }
